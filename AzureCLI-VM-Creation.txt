@@ -1,0 +1,23 @@
+#AzureCLI script for creation of respurce group,vnet,vm
+
+az group create -l eastasia -n rg-project1
+az group create -l eastasia -n rg-project2
+az group create -l australiacentral -n rg-project3
+
+az network vnet create -g rg-project1 -n vnet1 --address-prefix 10.1.0.0/16 \
+ --subnet-name vnet1-subnet --subnet-prefix 10.1.1.0/24 -l eastasia
+ 
+az network vnet create -g rg-project2 -n vnet2 --address-prefix 172.16.0.0/16 \
+ --subnet-name vnet2-subnet --subnet-prefix 172.16.1.0/24 -l eastasia
+ 
+az network vnet create -g rg-project3 -n vnet3 --address-prefix 192.168.0.0/16 \
+ --subnet-name vnet3-subnet --subnet-prefix 192.168.1.0/24 -l australiacentral
+ 
+az vm create -g rg-project1 -n testvm1 --image UbuntuLTS --vnet-name vnet1 \
+ --subnet vnet1-subnet --admin-username shiva --admin-password "Devops@12345" --size Standard_B1ms
+ 
+az vm create -g rg-project2 -n testvm2 --image UbuntuLTS --vnet-name vnet2 \
+ --subnet vnet2-subnet --admin-username shiva --admin-password "Devops@12345" --size Standard_B1ms
+ 
+az vm create -g rg-project3 -n testvm3 --image UbuntuLTS --vnet-name vnet3 \
+ --subnet vnet3-subnet --admin-username shiva --admin-password "Devops@12345" --size Standard_B1ms
