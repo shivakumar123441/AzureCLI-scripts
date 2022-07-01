@@ -1,4 +1,4 @@
-#AzureCLI script for creation of respurce group,vnet,vm
+#AzureCLI script for creation of resource group,vnet,vm
 
 az group create -l eastasia -n rg-project1
 az group create -l eastasia -n rg-project2
